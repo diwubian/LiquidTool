@@ -1,0 +1,20 @@
+,Functions,,
+,Function Value,Function Description,Type
+,10.0,Operating environment,Variable
+,20.0,Parallel access volumes,Variable
+,21.0,Remote mirror for z/OS,Variable
+,22.0,Remote mirror and copy,Variable
+,23.0,Point in time copy,Variable
+,24.0,FlashCopy SE,Variable
+,25.0,Metro mirror,Variable
+,26.0,Global mirror,Variable
+,27.0,Metro / global mirror,Variable
+,28.0,RMZ incremental resync,Variable
+,30.0,HyperPAV,Binary
+,31.0,High performance FICON,Binary
+,32.0,z/OS distributed data backup,Binary
+,40.0,Database protection,Binary,,
+,51.0,Thin provisioning,Binary,,
+,52.0,Drive encryption,Binary,,
+,53.0,Easy Tier,Binary
+,54.0,I/O Priority Manager,Variable
