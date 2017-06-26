@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<!-- 
+	====================================================================== 
+	    April 23, 2014                                                        
+		
+		Copyright (C) 2014 IBM Corporation, All Rights Reserved
+
+	    XlsToCsv     
+	    Build Process for build XlsToCsv.jar     
+	                   
+	    audas                                                             
+	====================================================================== 
+-->
+<project name="XlsToCsv" default="package" basedir="." >
+
+	<property name="basedir" value="." />
+	<property name="build.dir" value="${basedir}/bin" />
+	<property name="src.dir" value="${basedir}/src" />
+	<property name="lib.dir" value="${basedir}/lib" />
+	
+
+	<path id="classpath">
+		<fileset dir="${basedir}">
+			<include name="**/**.jar"/>
+		</fileset>
+		<pathelement location="${basedir}"/>
+	</path>
+
+	<!-- Cleaning build.dir -->
+	<target name="clean">
+		<echo>Cleaning the ${build.dir}</echo>
+		<delete dir="${build.dir}"/>
+		<delete file="${basedir}/PDFAnalyzer_1.0.jar"/>
+	</target>
+
+	<!-- Creating build.dir -->
+	<target name="init" depends="clean">
+		<echo>Creating direcory...</echo>
+		<mkdir dir="${build.dir}"/>
+	</target>
+
+	<!-- Creating jar package -->
+	<target name="package" depends="compile">
+		<copy file="${src.dir}/log4j.properties" todir="${build.dir}" failonerror="false"/>
+		<jar destfile="${basedir}/XlsToCsv.jar">
+			<fileset dir="${build.dir}" includes="**/**.*"/>
+			<archives>
+				<zips>
+					<fileset dir="${lib.dir}" includes="**/**.jar" />
+				</zips>
+			</archives>
+			<manifest>
+				<attribute name="Main-Class" value="com.ibm.liquid.XlsToCsvGui" />
+			</manifest>
+		</jar>
+	</target>
+
+	<!-- Compile the java code from ${src} into ${basedir} -->
+	<target name="compile" depends="init">
+		<echo>Compiling source..</echo>
+		<javac srcdir="${src.dir}" destdir="${build.dir}" nowarn="true" target="1.5">
+			<classpath refid="classpath"/>
+		</javac>
+	</target>
+
+</project>
